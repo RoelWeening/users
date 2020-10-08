@@ -1,5 +1,5 @@
 - name: Deploy Ansible User
-  hosts: Debian
+  hosts: Debian-grp
   tasks:
   - name: Create Devops User
     user:
