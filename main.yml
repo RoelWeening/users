@@ -1,0 +1,17 @@
+- name: create user
+  user: name={{ user_name }} shell=/bin/bash
+- name: create ssh dir
+  file: path=/home/{{ user_name }}/.ssh state=directory
+- name: copy authorized_key from github
+  get_url: url=https://github.com/{{ github_name }}.keys
+           dest=/home/{{ user_name }}/.ssh/authorized_keys
+- name: chown and chmod of ssh dir
+  file: path=/home/{{ user_name }}/.ssh recurse=yes
+        owner={{ user_name }} group={{ user_name }} mode=0700
+        state=directory
+- name: copy sudoers file for safety
+  command: cp -f /etc/sudoers /etc/sudoers.tmp
+- name: add nopassword user
+  lineinfile: dest=/etc/sudoers.tmp line="{{ user_name }} ALL=(ALL:ALL) NOPASSWD:ALL"
+- name: copy tmp file to real file with visudo check
+  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
