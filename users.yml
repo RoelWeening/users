@@ -1,6 +1,6 @@
 ---
 - name: Deploy Ansible User
-hosts: Debian
+- hosts: Debian
 tasks:
 
 - name: Create Devops User
