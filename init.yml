@@ -1,0 +1,8 @@
+---
+- hosts: Debian-grp
+  sudo: yes
+  vars:
+    - user_name: devops
+    - github_name: roel
+  roles:
+    - initilize_user
