@@ -2,7 +2,7 @@
   hosts: Debian-grp
   tasks:
   - name: Create Devops User
-      user:
+    user:
       name: devops
       groups: sudo
       append: true
