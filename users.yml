@@ -35,10 +35,10 @@
 
   - name: Deploy SSH Key
     authorized_key: user=devops
-                     key="{{ lookup('file', '/home/devops/.ssh/id_rsa.pub') }}"
+                     key="{{ lookup('file', 'files/key1') }}"
                      state=present
 
   - name: Deploy SSH Key
     authorized_key: user=beheer
-                     key="{{ lookup('file', '/home/beheer/.ssh/id_rsa.pub') }}"
+                     key="{{ lookup('file', 'files/key1') }}"
                      state=present
